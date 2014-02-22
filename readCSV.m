@@ -1,0 +1,1 @@
+[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = textread('output.csv', '%f %f %f %f %f %f %f %f %f %f %f', 'headerlines', 1, 'delimiter', ',');
