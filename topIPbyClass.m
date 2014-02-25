@@ -2,7 +2,7 @@
 sortUniqA = uniqA(sortIdx,:);
 sortUniqIdx = uniqIdx (sortIdx,:);
 
-topNumber = 50;
+topNumber = 5;
 
 firstRaw = 1;
 
@@ -24,4 +24,4 @@ for i=1:size(topIPs,1)
 end
 
 topIPs(:,3) = round(exp(topIPs(:,3)) - 10);
-topIPs(:,2) = round(topIPs(:,2) / 10^5); 
+topIPs(:,2) = round(topIPs(:,2)); 

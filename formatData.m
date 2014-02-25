@@ -1,4 +1,4 @@
-  srawIPSum = rawIp1 * 256^3 .+ rawIp2 * 256^2 .+ rawIp3 * 256^1 .+ rawIp4;
+srawIPSum = rawIp1 * 256^3 .+ rawIp2 * 256^2 .+ rawIp3 * 256^1 .+ rawIp4;
 
 uniqIP = unique(rawIPSum);
 
