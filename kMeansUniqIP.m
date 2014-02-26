@@ -1,11 +1,4 @@
-
-[A_norm, mu, sigma] = featureNormalize(uniqA(:,[2:4, 35:39, 40:44, 48:50, 51]));
-
-A_norm(:,4:8) = A_norm(:,4:8) * 5;
-
-K = 10;
-iterations = 30;
-randomLoops = 20;
+function [minCentroids, minJ, uniqIdx] = kMeansUniqIP(A_norm, K, iterations, randomLoops)
 
 goAuto = input("Press '1' to coninue without stop or a letter to stop:");
 
@@ -40,3 +33,5 @@ for i = 1:randomLoops;
    endif
 end
 printf("  --- best J: %d --- \n", minJ);
+
+end

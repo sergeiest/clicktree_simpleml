@@ -13,16 +13,6 @@ idx = zeros(size(X,1), 1);
 [m, n] = size(X);
 
 
-% ====================== YOUR CODE HERE ======================
-% Instructions: Go over every example, find its closest centroid, and store
-%               the index inside idx at the appropriate location.
-%               Concretely, idx(i) should contain the index of the centroid
-%               closest to example i. Hence, it should be a value in the 
-%               range 1..K
-%
-% Note: You can use a for-loop over the examples to compute this.
-%
-
 min_a = zeros(size(X,1), 1);
 a = zeros(size(X,1), 1);
 J = 0;
@@ -43,8 +33,6 @@ for i=1:m
   J = J + sum((X(i,:) - centroids(idx(i),:)) .^ 2);
 end
 
-
-% =============================================================
 
 end
 

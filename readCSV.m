@@ -1,3 +1,5 @@
-#[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = textread('output.csv', '%f %f %f %f %f %f %f %f %f %f %f', 'headerlines', 1, 'delimiter', ',');
+function [rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV(fileName);
 
-[hour_rawId, hour_rawUserid, hour_rawTimedate, hour_rawClientType, hour_rawPage, hour_rawHttmverb, hour_rawIp1, hour_rawIp2, hour_rawIp3, hour_rawIp4, hour_rawReferrer] = textread('output_hour.csv', '%f %f %f %f %f %f %f %f %f %f %f', 'headerlines', 1, 'delimiter', ',');
+  [rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = textread(fileName, '%f %f %f %f %f %f %f %f %f %f %f', 'headerlines', 1, 'delimiter', ',');
+
+end

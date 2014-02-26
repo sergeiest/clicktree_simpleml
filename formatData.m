@@ -1,4 +1,6 @@
-srawIPSum = rawIp1 * 256^3 .+ rawIp2 * 256^2 .+ rawIp3 * 256^1 .+ rawIp4;
+function [uniqA, A] = formatData(rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer)
+
+rawIPSum = rawIp1 * 256^3 .+ rawIp2 * 256^2 .+ rawIp3 * 256^1 .+ rawIp4;
 
 uniqIP = unique(rawIPSum);
 
@@ -46,7 +48,7 @@ n=1;
 splitUserid = zeros(m0,n);
 uniqUseridCount = zeros(m,n);
 uniqUserid = zeros(m,n);
-n niq = (rawUserid(:,1) ~= -1);
+splitUserid = (rawUserid(:,1) ~= -1);
 
 
 for i=1:m
@@ -92,4 +94,5 @@ uniqA = [tmp1, tmp2, tmp3];
  
  A = [rawTimedate, rawIPSum, rawPage, rawHttmverb, rawClientType, rawReferrer];
 
+ end
 

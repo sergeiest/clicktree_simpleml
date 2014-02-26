@@ -1,8 +1,14 @@
+function topIPs = topIPbyClass(uniqA, uniqIdx, A, topNumber)
+
 [sortUniqA, sortIdx] = sort(uniqA(:, 2));
 sortUniqA = uniqA(sortIdx,:);
 sortUniqIdx = uniqIdx (sortIdx,:);
 
-topNumber = 5;
+rawIPSum = A(:,2);
+rawIp1 = floor(rawIPSum / 256^3);
+rawIp2 = floor((rawIPSum - rawIp1 * 256^3)/ 256^2);
+rawIp3 = floor((rawIPSum - rawIp1 * 256^3 - rawIp2*256^2)/ 256);
+rawIp4 = floor(rawIPSum - rawIp1 * 256^3 - rawIp2*256^2 - rawIp3*256);
 
 firstRaw = 1;
 
@@ -25,3 +31,5 @@ end
 
 topIPs(:,3) = round(exp(topIPs(:,3)) - 10);
 topIPs(:,2) = round(topIPs(:,2)); 
+
+end
