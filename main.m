@@ -3,25 +3,31 @@
 
 % Prepare data for the initial k-Means
 
-[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV('output.csv');
+[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV('output_2.csv');
 
 [uniqA, A] = formatData(rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer);
 
-[A_norm, mu, sigma] = featureNormalize(uniqA(:,[2:4, 35:39, 40:44, 48:50, 51]));
-A_norm(:,4:8) = A_norm(:,4:8) * 5;
+[A_norm, mu, sigma] = featureNormalize(uniqA(:,[2:13, 23:25, 29:34, 41:44, 49]));
+A_norm(:,16) = A_norm(:,16) * 10;
 
 % k-Means for unique IP addresses
 
-K = 2; % 10;
-iterations = 3; % 30;
-randomLoops = 2; % 20;
+K = 10; % 10;
+iterations = 30; % 30;
+randomLoops = 20; % 20;
 
 [minCentroids, minJ, uniqIdx] = kMeansUniqIP(A_norm, K, iterations, randomLoops);
 
-[chartData1, chartData2, chartData3, chartData4] = chartData(A_norm, minCentroids, uniqA, A, K);
+improveIter = 50;
 
-topNumber = 5
+[newCentroids, newJ, newIdx] = kMeansImprove(A_norm, K, minCentroids, improveIter);
+
+[chartData1, chartData2, chartData3, chartData4, idx] = chartData(A_norm, minCentroids, uniqA, A, K, 0);
+[chartData5, chartData6, chartData7] = tmpChartData(A_norm, minCentroids,uniqA, A, K, idx);
+
+topNumber = 20;
 topIPs = topIPbyClass(uniqA, uniqIdx, A, topNumber);
+[pageTopIPs, dayTopIPs, hourTopIPs] = chartTopIPs(topIPs, uniqA(:,1), uniqA(:,5:13), rawIPSum, rawTimedate);
 
 % Prepare new (hourly) data for Online k-Means
 

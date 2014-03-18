@@ -33,5 +33,6 @@ for i = 1:randomLoops;
    endif
 end
 printf("  --- best J: %d --- \n", minJ);
+[uniqIdx, J] = findClosestCentroids(A_norm, minCentroids);
 
 end

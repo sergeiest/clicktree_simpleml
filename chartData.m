@@ -1,4 +1,4 @@
-function [chartData1, chartData2, chartData3, chartData4] = chartData(A_norm, minCentroids,uniqA, A, K)
+function [chartData1, chartData2, chartData3, chartData4, idx] = chartData(A_norm, minCentroids, uniqA, A, K, idx)
 
 rawIPSum = A(:,2);
 rawPage = A(:,3);
@@ -9,28 +9,20 @@ rawTimedate = A(:,1);
 
 % Get idx from uniqIdx
 m = size(rawIPSum,1);
-idx = zeros(m,1);
-for i=1:m
-  idx(i,1) = (uniqIdx(uniqA(:,1) == rawIPSum(i,1),1));
-end
+if idx == 0
+  idx = zeros(m,1);
+  for i=1:m
+    idx(i,1) = (uniqIdx(uniqA(:,1) == rawIPSum(i,1),1));
+  end
+endif
 
-
-% Defult values for drawChart
-
-drawA = A;
-drawIdx = idx;
-addRandom = 0;
-x = 1;
-y = 2;
-d = 0;
-indexUsed =0;
 
 % ------- Datatable for Dashboard --------
 
 m = size(A,1);
 
 % Request per class for top URLs
-tmpData = zeros(m,K);
+tmpData = zeros(m,K) - 1;
 
 for i = 1:m
   tmpData(i,idx(i,1)) = rawPage(i,1);
@@ -43,7 +35,7 @@ chartData1(:,1) = listPage;
 
 for i = 1:m0
   for j =1:K
-    chartData1(i,j+1) = sum(tmpData(tmpData(:,j) == listPage(i,1),j));
+    chartData1(i,j+1) = sum(tmpData(:,j) == listPage(i,1));
   end 
 end
 chartData1(:,K+2) = sum(chartData1(:,2:K+1),2);

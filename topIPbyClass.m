@@ -1,5 +1,7 @@
 function topIPs = topIPbyClass(uniqA, uniqIdx, A, topNumber)
 
+K = size(unique(uniqIdx),1);
+
 [sortUniqA, sortIdx] = sort(uniqA(:, 2));
 sortUniqA = uniqA(sortIdx,:);
 sortUniqIdx = uniqIdx (sortIdx,:);
@@ -29,7 +31,7 @@ for i=1:size(topIPs,1)
   topIPs(i,7) = rawIp4(thisIP,1)(1,1);
 end
 
-topIPs(:,3) = round(exp(topIPs(:,3)) - 10);
+topIPs(:,3) = round(exp(topIPs(:,3)) - 1);
 topIPs(:,2) = round(topIPs(:,2)); 
 
 end

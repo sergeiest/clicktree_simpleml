@@ -1,0 +1,1 @@
+uniqA(uniqA(:,35) == 1 & uniqA(:,36) == 1 & uniqA(:,37) == 1 & uniqA(:,38) == 1 & uniqA(:,39) == 1 & uniqA(:,40) == 1,1)
