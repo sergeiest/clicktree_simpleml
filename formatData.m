@@ -14,15 +14,14 @@ uniqFrequency = zeros(m,1);
 uniqTimeDev = zeros(m,1);
 uniqTimeAv = zeros(m,1);
 
-n=9;
+n=10;
 splitPage = zeros(m0,n);
 uniqPage = zeros(m,n);
 uniqPageFrequency = zeros(m,n);
-for i=1:7
+for i=1:9
   splitPage(:,i) = (rawPage(:,1) == i - 1);
 end
-splitPage(:,8) = (rawPage(:,1) == 9);
-splitPage(:,n) = 1 - sum(splitPage(:,1:8),2);
+splitPage(:,n) = 1 - sum(splitPage(:,1:(n-1)),2);
 
 n=3;
 splitHttmverb = zeros(m0,n);
@@ -90,9 +89,9 @@ end
 tmp1 = [uniqIP, log(uniqFrequency + 1), log(uniqTimeDev + 1), log(uniqTimeAv + 1)];
 %         1               2                          3                  4
 tmp2 = [log(uniqPageFrequency + 1), uniqPage, log(uniqHttmverbFrequency + 1), uniqHttmverb, log(uniqClientTypeFrequency + 1), uniqClientType];
-%         5-13                      14-22       23-25                            26-28        29-34                             35-40
+%         5-14                      15-24       25-27                            28-30        31-36                             35-40
 tmp3 = [log(uniqReferrerFrequency + 1), uniqReferrer, log(uniqUseridCount + 1), uniqUserid];
-%          41-44                          45-48        49                          50
+%          43-46                          47-50        51                          52
 uniqA = [tmp1, tmp2, tmp3];
  %        1-4  5-40   41-50
  

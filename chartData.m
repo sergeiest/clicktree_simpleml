@@ -1,20 +1,20 @@
-function [chartData1, chartData2, chartData3, chartData4, idx] = chartData(A_norm, minCentroids, uniqA, A, K, idx)
+function [chartData1, chartData2, chartData3, chartData4, idx] = chartData(uniqA, A, uniqIdx, idx, K)
 
 rawIPSum = A(:,2);
 rawPage = A(:,3);
 rawTimedate = A(:,1);
 
 % Get uniqIdx from minCentroids
-[uniqIdx, J] = findClosestCentroids(A_norm, minCentroids);
+%[uniqIdx, J] = findClosestCentroids(A_norm, minCentroids);
 
 % Get idx from uniqIdx
-m = size(rawIPSum,1);
-if idx == 0
-  idx = zeros(m,1);
-  for i=1:m
-    idx(i,1) = (uniqIdx(uniqA(:,1) == rawIPSum(i,1),1));
-  end
-endif
+%m = size(rawIPSum,1);
+%if idx == 0
+%  idx = zeros(m,1);
+%  for i=1:m
+%    idx(i,1) = (uniqIdx(uniqA(:,1) == rawIPSum(i,1),1));
+%  end
+%endif
 
 
 % ------- Datatable for Dashboard --------

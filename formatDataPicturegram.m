@@ -34,8 +34,8 @@ uniqLand = zeros(m,5);
 uniqLandFrequency = zeros(m,5);
 splitLand(:,1) = (rawLand(:,1) == 0);
 splitLand(:,2) = (rawLand(:,1) == 1);
-splitLand(:,3) = (rawLand(:,1) == 4);
-splitLand(:,4) = (rawLand(:,1) == 9);
+splitLand(:,3) = (rawLand(:,1) == 2);
+splitLand(:,4) = (rawLand(:,1) == 32);
 splitLand(:,5) = 1 - sum(splitLand(:,1:4),2);
 
 %  -- User Agent --
@@ -43,23 +43,24 @@ splitUserAgent = zeros(m0,9);
 uniqUserAgent = zeros(m,9);
 uniqUserAgentFrequency = zeros(m,9);
 splitUserAgent(:,1) = (rawUserAgent(:,1) == 0);
-splitUserAgent(:,2) = (rawUserAgent(:,1) == 1);
-splitUserAgent(:,3) = (rawUserAgent(:,1) == 2);
-splitUserAgent(:,4) = (rawUserAgent(:,1) == 3);
+splitUserAgent(:,2) = (rawUserAgent(:,1) == 2);
+splitUserAgent(:,3) = (rawUserAgent(:,1) == 3);
+splitUserAgent(:,4) = (rawUserAgent(:,1) == 4);
 splitUserAgent(:,5) = (rawUserAgent(:,1) == 6);
-splitUserAgent(:,6) = (rawUserAgent(:,1) == 10);
-splitUserAgent(:,7) = (rawUserAgent(:,1) == 17);
-splitUserAgent(:,8) = (rawUserAgent(:,1) == 20);
+splitUserAgent(:,6) = (rawUserAgent(:,1) == 12);
+splitUserAgent(:,7) = (rawUserAgent(:,1) == 59);
+splitUserAgent(:,8) = (rawUserAgent(:,1) == 82);
 splitUserAgent(:,9) = 1 - sum(splitUserAgent(:,1:8),2);
 
 % -- Reffer --
-splitReferrer = zeros(m0,4);
-uniqReferrer = zeros(m,4);
-uniqReferrerFrequency = zeros(m,4);
+splitReferrer = zeros(m0,5);
+uniqReferrer = zeros(m,5);
+uniqReferrerFrequency = zeros(m,5);
 splitReferrer(:,1) = (rawReferrer(:,1) == 0);
 splitReferrer(:,2) = (rawReferrer(:,1) == 1);
-splitReferrer(:,3) = (rawReferrer(:,1) == 5);
-splitReferrer(:,4) = 1 - sum(splitReferrer(:,1:3),2);
+splitReferrer(:,3) = (rawReferrer(:,1) == 2);
+splitReferrer(:,4) = (rawReferrer(:,1) == 3);
+splitReferrer(:,5) = 1 - sum(splitReferrer(:,1:4),2);
 
 
 
@@ -95,13 +96,13 @@ for i=1:m
    
 end
 
-tmp1 = [uniqIP, log(uniqFrequency + 10), log(uniqTimeDev + 10), log(uniqTimeAv + 1)];
+tmp1 = [uniqIP, log(uniqFrequency + 1), log(uniqTimeDev + 1), log(uniqTimeAv + 1)];
 %         1               2                   3                  4
-tmp2 = [log(uniqPageFrequency +10), uniqPage, log(uniqEncodeFrequency +10), uniqEncode, log(uniqLandFrequency + 10), uniqLand, log(uniqUserAgentFrequency + 10), uniqUserAgent, log(uniqReferrerFrequency + 10), uniqReferrer ]; 
-%         5-7                         8-10       11-14                       15-18       19-23                        24-28     29-37                              38-46          47-50                           51-54
+tmp2 = [log(uniqPageFrequency +1), uniqPage, log(uniqEncodeFrequency + 1), uniqEncode, log(uniqLandFrequency + 1), uniqLand, log(uniqUserAgentFrequency + 1), uniqUserAgent, log(uniqReferrerFrequency + 1), uniqReferrer ]; 
+%         5-7                         8-10       11-14                       15-18       19-23                        24-28     29-37                              38-46          47-51                           52-56
 
 uniqA = [tmp1, tmp2];
- %        1-4  5-53
+ %        1-4  5-56
  
  A = [rawTimestamp, rawIPSum, rawPage, rawHTTMVerb, rawReferrer, rawIp1, rawIp2, rawIp3, rawIp4];
 

@@ -1,5 +1,6 @@
-function C = countUniq(X, idx)
+function C = countUniq(X)
 
+idx = 1;
 t = unique(X(:,idx));
 m = size(t,1);
 

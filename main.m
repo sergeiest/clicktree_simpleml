@@ -3,28 +3,37 @@
 
 % Prepare data for the initial k-Means
 
-[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV('output_2.csv');
+[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV('output_3.csv');
 
-[uniqA, A] = formatData(rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer);
+[uniqATotal, ATotal] = formatData(rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer);
+uniqA = uniqATotal(uniqATotal(:,2) > log(11), :);
 
-[A_norm, mu, sigma] = featureNormalize(uniqA(:,[2:13, 23:25, 29:34, 41:44, 49]));
-A_norm(:,16) = A_norm(:,16) * 10;
+[A_norm, mu, sigma] = featureNormalize(uniqA(:,[2:14, 25:27, 31:36, 43:46, 51]));
+A_norm(:,17) = A_norm(:,17) * 10;
 
 % k-Means for unique IP addresses
 
-K = 10; % 10;
+K = 9; % 10;
 iterations = 30; % 30;
-randomLoops = 20; % 20;
+randomLoops = 50; % 20;
 
 [minCentroids, minJ, uniqIdx] = kMeansUniqIP(A_norm, K, iterations, randomLoops);
 
 improveIter = 50;
 
-[newCentroids, newJ, newIdx] = kMeansImprove(A_norm, K, minCentroids, improveIter);
+[minCentroids, minJ, uniqIdx] = kMeansImprove(A_norm, K, minCentroids, improveIter);
 
-[chartData1, chartData2, chartData3, chartData4, idx] = chartData(A_norm, minCentroids, uniqA, A, K, 0);
-[chartData5, chartData6, chartData7] = tmpChartData(A_norm, minCentroids,uniqA, A, K, idx);
+[idxTotal, uniqIdxTotal] = assignIdx(uniqA, uniqATotal, ATotal, uniqIdx);
+idx = idxTotal;
+uniqIdx = uniqIdxTotal;
+A = ATotal;
+uniqA = uniqATotal;
 
+
+[chartData1, chartData2, chartData3, chartData4, idx] = chartData(uniqA, A, uniqIdx, idx, K + 1);
+[chartData5, chartData6, chartData7] = tmpChartData(uniqA, A, uniqIdx, idx, K + 1);
+
+rawIPSum = bitshift(rawIp4,0) + bitshift(rawIp3,8) + bitshift(rawIp2,16) + bitshift(rawIp1,24);
 topNumber = 20;
 topIPs = topIPbyClass(uniqA, uniqIdx, A, topNumber);
 [pageTopIPs, dayTopIPs, hourTopIPs] = chartTopIPs(topIPs, uniqA(:,1), uniqA(:,5:13), rawIPSum, rawTimedate);
