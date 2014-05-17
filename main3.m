@@ -3,9 +3,9 @@
 
 % Prepare data for the initial k-Means
 
-[rawRow, rawUserID, rawHost, rawTimestamp, rawPage, rawHTTMVerb, rawUserAgent, rawEncode, rawReferrer, rawLand, rawIp1, rawIp2, rawIp3, rawIp4, rawPort] = readCSVPicturegram('outPicturegram.csv');
+[rawRow, rawUserID, rawHost, rawTimestamp, rawPage, rawHTTMVerb, rawUserAgent, rawEncode, rawReferrer, rawLand, rawIp1, rawIp2, rawIp3, rawIp4, rawPort] = readCSV3('data/3.csv');
 
-[uniqATotal, ATotal] = formatDataPicturegram(rawRow, rawUserID, rawHost, rawTimestamp, rawPage, rawHTTMVerb, rawUserAgent, rawEncode, rawReferrer, rawLand, rawIp1, rawIp2, rawIp3, rawIp4, rawPort);
+[uniqATotal, ATotal] = formatData3(rawRow, rawUserID, rawHost, rawTimestamp, rawPage, rawHTTMVerb, rawUserAgent, rawEncode, rawReferrer, rawLand, rawIp1, rawIp2, rawIp3, rawIp4, rawPort);
 uniqA = uniqATotal(uniqATotal(:,2) > log(11), :);
 
 
@@ -41,7 +41,7 @@ uniqA = uniqATotal;
 rawIPSum = bitshift(rawIp4,0) + bitshift(rawIp3,8) + bitshift(rawIp2,16) + bitshift(rawIp1,24);
 topNumber = 20;
 topIPs = topIPbyClass(uniqA, uniqIdx, A, topNumber);
-[pageTopIPs, dayTopIPs, hourTopIPs] = chartTopIPs(topIPs, uniqA(:,1), uniqA(:,5:7), rawIPSum, rawTimedate);
+[pageTopIPs, dayTopIPs, hourTopIPs] = chartTopIPs(topIPs, uniqA(:,1), uniqA(:,5:7), rawIPSum, rawTimestamp);
 
 
 % Defult values for drawChart

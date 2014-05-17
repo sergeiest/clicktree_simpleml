@@ -1,13 +1,16 @@
-function indexToDraw = drawChart(drawA, drawIdx, A, uniqA, addRandom, x, y, d, indexUsed)
+function indexToDraw = drawChart(drawA, drawIdx, A, uniqA, uniqIdx, addRandom, x, y, d, indexUsed)
 
 K = size(unique(drawIdx),1);
 drawA1 = drawA(:,x);
 drawA2 = drawA(:,y);
 
 if size(drawA,1) == size(A,1)
-
   if indexUsed == 0
-    indexUsed = (rand(size(uniqA,1),1) < 1000/size(uniqA,1));
+    if d != 0
+      indexUsed = (uniqIdx(:,1) == d);
+    else
+      indexUsed = (rand(size(uniqA,1),1) < 10000/size(uniqA,1));
+    endif
     tmpA = uniqA(indexUsed,:);
     indexToDraw = zeros(size(A,1),1);
     for i = 1:sum(indexUsed,1)

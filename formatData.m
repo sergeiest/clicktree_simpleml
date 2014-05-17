@@ -89,7 +89,7 @@ end
 tmp1 = [uniqIP, log(uniqFrequency + 1), log(uniqTimeDev + 1), log(uniqTimeAv + 1)];
 %         1               2                          3                  4
 tmp2 = [log(uniqPageFrequency + 1), uniqPage, log(uniqHttmverbFrequency + 1), uniqHttmverb, log(uniqClientTypeFrequency + 1), uniqClientType];
-%         5-14                      15-24       25-27                            28-30        31-36                             35-40
+%         5-14                      15-24       25-27                            28-30        31-36                             37-42
 tmp3 = [log(uniqReferrerFrequency + 1), uniqReferrer, log(uniqUseridCount + 1), uniqUserid];
 %          43-46                          47-50        51                          52
 uniqA = [tmp1, tmp2, tmp3];

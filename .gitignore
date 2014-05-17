@@ -1,8 +1,2 @@
-model_*
+data/*
 .DS_Store
-output.csv
-lists.txt
-snip2code*
-*.csv
-octave-workspace
-*.txt

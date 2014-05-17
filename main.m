@@ -3,7 +3,7 @@
 
 % Prepare data for the initial k-Means
 
-[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV('output_3.csv');
+[rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer] = readCSV('data/1.csv');
 
 [uniqATotal, ATotal] = formatData(rawId, rawUserid, rawTimedate, rawClientType, rawPage, rawHttmverb, rawIp1, rawIp2, rawIp3, rawIp4, rawReferrer);
 uniqA = uniqATotal(uniqATotal(:,2) > log(11), :);

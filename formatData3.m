@@ -1,4 +1,4 @@
-function [uniqA, A] = formatDataPicturegram(rawRow, rawUserID, rawHost, rawTimestamp, rawPage, rawHTTMVerb, rawUserAgent, rawEncode, rawReferrer, rawLand, rawIp1, rawIp2, rawIp3, rawIp4, rawPort)
+function [uniqA, A] = formatData3(rawRow, rawUserID, rawHost, rawTimestamp, rawPage, rawHTTMVerb, rawUserAgent, rawEncode, rawReferrer, rawLand, rawIp1, rawIp2, rawIp3, rawIp4, rawPort)
 
 rawIPSum = rawIp1 * 256^3 .+ rawIp2 * 256^2 .+ rawIp3 * 256^1 .+ rawIp4;
 
